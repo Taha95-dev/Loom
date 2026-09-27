@@ -1,51 +1,5 @@
 ## 💰 Commercial Tools
 
-## ⚡ Quantum Vim – $10
-
-### VS Code Vibes. Neovim Power. Zero Config.
-
-![Quantum Vim Startup](quantum-vim.jpg)
-
-![A screenshot of task manager](quantum-vim-task-manager.jpg)
-
-**Open it. Start coding. That's it.**
-
-- **22.6 MB RAM** – Lighter than Task Manager itself. Runs on a Raspberry Pi.
-- **0.3% CPU** – Your terminal uses more resources.
-- **Stunning startup** – Every time you open it, it feels premium
-- **VS Code vibes** – Familiar feel, terminal speed
-- **All tools included** – LSP, autocomplete, file tree, git integration – ready to go
-
-### Why $10?
-
-- **Save 10+ hours** of configuring Neovim from scratch
-- **Lifetime updates** – never pay again
-- **Priority support** – I'll help you if something breaks
-- **22.6 MB** – Less RAM than a single Chrome tab. Seriously.
-
-> **Launch Price: $10** – Use code `SUPERPOSITION` for 10% off (first 100 buyers)
-
-**👉 [Buy Quantum Vim Now](https://buy.polar.sh/polar_cl_e7ZaWRsYzDbr17dP5fi8yNEdWUau35AHzPG6X3fM2mA)**
-
----
-
-### Pathfix v2 – Never Fight Your PATH Again
-
-One command to fix PATH issues forever. Works on Windows, macOS, Linux.
-
-**Features:**
-- Add directories to PATH permanently
-- Check if commands are accessible
-- Diagnose PATH problems with `doctor`
-- Sync PATH across bash, zsh, fish, PowerShell
-- Backup and restore configurations
-
-**Price: $15 (lifetime updates for v2.x)**
-
-👉 [Buy Pathfix v2](https://kashiflyas.gumroad.com/l/kkszxi)
-
----
-
 ### Omarchy v2 – The $5 Shortcut Manager
 
 **Stop typing long commands. Start using 3-letter shortcuts.**
@@ -217,14 +171,14 @@ Built by [Taha](https://github.com/Taha95-dev) — because building tools is bet
 
 ## Windows Defender False Positive
 
-Windows Defender may flag `pathfix.exe` as a virus. This is a **false positive** — a known issue with Go binaries.
+Windows Defender may flag `omarchy.exe` as a virus. This is a **false positive** — a known issue with Go binaries.
 
 **Your file is safe.** Here's how to fix it:
 
 1. Open Windows Security → Virus & threat protection
 2. Click "Manage settings" under Virus & threat protection settings
 3. Scroll to "Exclusions" → "Add or remove exclusions"
-4. Add the folder where you downloaded `pathfix.exe` as an exclusion
+4. Add the folder where you downloaded `omarchy.exe` as an exclusion
 5. Run the file again
 
 [Verify the file checksum](https://github.com/Taha95-dev/Omarchy-CLI-tool/releases/download/v2.6.0/checksums.txt) to confirm integrity.
