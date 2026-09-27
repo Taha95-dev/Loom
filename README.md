@@ -48,7 +48,7 @@ That's it. No external tools. No config files. Just shortcuts that work.
 
 ---
 
-# 🚀 Omarchy ━━━━ "One Final Fix Update"
+# 🚀 Omarchy ━━━━ "v2.7"
 
 **One CLI to rule your dev workflow — git, scripts, env, cleanup, and more.**
 
