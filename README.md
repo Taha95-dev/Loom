@@ -1,35 +1,35 @@
 ## 💰 Commercial Tools
 
-### Omarchy v2 – The $5 Shortcut Manager
+### Loom v2 – The $5 Shortcut Manager
 
 **Stop typing long commands. Start using 3-letter shortcuts.**
 
-#### Before Omarchy v2:
+#### Before Loom v2:
 ```powershell
 # 27 characters just to check your version
-omarchy version
+Loom version
 
 # Every. Single. Time.
 ```
 
-#### After Omarchy v2:
+#### After Loom v2:
 ```powershell
 # One-time setup
-tap add show-version "omarchy version"
-✅ Shortcut added: show-version → omarchy version
+tap add show-version "Loom version"
+✅ Shortcut added: show-version → Loom version
 
 # Now just type:
 show-version
-Omarchy v2.6.0
+Loom v2.6.0
 ```
 
 That's it. No external tools. No config files. Just shortcuts that work.
 
 #### What else can you do?
 
-| Without Omarchy v2 | With Omarchy v2 ($5) |
+| Without Loom v2 | With Loom v2 ($5) |
 |---------------------|----------------------|
-| `omarchy sync -a` | `sync` |
+| `Loom sync -a` | `sync` |
 | `docker-compose down -v && docker-compose up -d` | `dbreset` |
 | `git add . && git commit -m "quick fix" && git push` | `push "quick fix"` |
 | `ssh deploy-server && cd /var/www && npm run build` | `deploy` |
@@ -44,17 +44,17 @@ That's it. No external tools. No config files. Just shortcuts that work.
 - No subscriptions. No hidden fees.
 - **No external dependencies.** No PowerShell modules to install. Just `tap add` and go.
 
-👉 [Buy Omarchy V2](https://buy.polar.sh/polar_cl_zvnuIMcqUEG0ghrgaFfFV9PivHvnI9esOA40D25wvUK)
+👉 [Buy Loom V2](https://buy.polar.sh/polar_cl_zvnuIMcqUEG0ghrgaFfFV9PivHvnI9esOA40D25wvUK)
 
 ---
 
-# 🚀 Omarchy ━━━━ "v2.7"
+# 🚀 Loom ━━━━ "v2.7"
 
 **One CLI to rule your dev workflow — git, scripts, env, cleanup, and more.**
 
 [![Go Version](https://img.shields.io/badge/go-1.21%2B-blue)](https://go.dev/)
-[![Clones](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=clones&query=clones&url=https%3A%2F%2Fapi.github.com%2Frepos%2FTaha95-dev%2FOmarchy-CLI-tool%2Ftraffic%2Fclones)](https://github.com/Taha95-dev/Omarchy-CLI-tool)
-[![Release](https://img.shields.io/github/v/release/Taha95-dev/Omarchy-CLI-tool)](https://github.com/Taha95-dev/Omarchy-CLI-tool/releases)
+[![Clones](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=clones&query=clones&url=https%3A%2F%2Fapi.github.com%2Frepos%2FTaha95-dev%2FLoom%2Ftraffic%2FLoomFclones)](https://github.com/Taha95-dev/Loom)
+[![Release](https://img.shields.io/github/v/release/Taha95-dev/Loom)](https://github.com/Taha95-dev/Loom/releases)
 
 ---
 
@@ -62,14 +62,14 @@ That's it. No external tools. No config files. Just shortcuts that work.
 
 | Command | What It Does |
 |---------|--------------|
-| `omarchy doctor` | Concurrent diagnostic suite for environment health |
-| `omarchy cleanup` | Aggressive recursive purge for build artifacts and logs |
-| `omarchy run` | Smart script runner (dev/build/test automation) |
-| `omarchy sync` | Secure Git orchestration with safety validation |
-| `omarchy info` | Instant project analytics (LOC, TODOs, Git health) |
-| `omarchy db` | Database migrations and lifecycle management |
-| `omarchy use` | Create new project from saved template |
-| `omarchy save` | Save current project as a template |
+| `Loom doctor` | Concurrent diagnostic suite for environment health |
+| `Loom cleanup` | Aggressive recursive purge for build artifacts and logs |
+| `Loom run` | Smart script runner (dev/build/test automation) |
+| `Loom sync` | Secure Git orchestration with safety validation |
+| `Loom info` | Instant project analytics (LOC, TODOs, Git health) |
+| `Loom db` | Database migrations and lifecycle management |
+| `Loom use` | Create new project from saved template |
+| `Loom save` | Save current project as a template |
 
 ---
 
@@ -77,17 +77,17 @@ That's it. No external tools. No config files. Just shortcuts that work.
 
 ```bash
 # Clone and build
-git clone https://github.com/Taha95-dev/Omarchy-CLI-tool.git
-cd Omarchy-CLI-tool
-go build -o omarchy
+git clone https://github.com/Taha95-dev/Loom.git
+cd Loom
+go build -o Loom
 
 # Run anywhere
-./omarchy run dev
-./omarchy info
-./omarchy cleanup --docker
+./Loom run dev
+./Loom info
+./Loom cleanup --docker
 ```
 
-Or [download the latest release](https://github.com/Taha95-dev/Omarchy-CLI-tool/releases).
+Or [download the latest release](https://github.com/Taha95-dev/Loom/releases).
 
 ---
 
@@ -97,19 +97,19 @@ Or [download the latest release](https://github.com/Taha95-dev/Omarchy-CLI-tool/
 
 ```bash
 # Save current project as a template
-omarchy save my-starter
+Loom save my-starter
 
 # List saved templates
-omarchy list-templates
+Loom list-templates
 
 # Create new project from template
-omarchy use my-starter new-project
+Loom use my-starter new-project
 ```
 
 ### Get instant project insights
 
 ```bash
-$ omarchy info
+$ Loom info
 📊 Project Info
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📁 Files:         127
@@ -122,13 +122,13 @@ $ omarchy info
 ### Git sync with safety
 
 ```bash
-omarchy sync -a          # auto-commit + push
-omarchy sync --tag v1.0  # commit + tag + push
+Loom sync -a          # auto-commit + push
+Loom sync --tag v1.0  # commit + tag + push
 ```
 
 ---
 
-## 🧠 Why Omarchy?
+## 🧠 Why Loom?
 
 - **One tool** — no more switching between git, npm, docker, find, du, grep
 - **Safety first** — won't let you commit your home folder or drop a production DB without confirmation
@@ -139,7 +139,7 @@ omarchy sync --tag v1.0  # commit + tag + push
 
 ## 🤝 Support
 
-**Omarchy is made on a laptop with 4GB RAM, I5 3330U, HDD** — if you find it useful, consider giving it a ⭐ on GitHub.
+**Loom is made on a laptop with 4GB RAM, I5 3330U, HDD** — if you find it useful, consider giving it a ⭐ on GitHub.
 
 ---
 
@@ -148,12 +148,12 @@ omarchy sync --tag v1.0  # commit + tag + push
 ### From source
 
 ```bash
-go install github.com/Taha95-dev/Omarchy-CLI-tool@latest
+go install github.com/Taha95-dev/Loom@latest
 ```
 
 ### From releases
 
-Download the binary for your OS from [Releases](https://github.com/Taha95-dev/Omarchy-CLI-tool/releases).
+Download the binary for your OS from [Releases](https://github.com/Taha95-dev/Loom/releases).
 
 ---
 
@@ -171,18 +171,18 @@ Built by [Taha](https://github.com/Taha95-dev) — because building tools is bet
 
 ## Windows Defender False Positive
 
-Windows Defender may flag `omarchy.exe` as a virus. This is a **false positive** — a known issue with Go binaries.
+Windows Defender may flag `Loom.exe` as a virus. This is a **false positive** — a known issue with Go binaries.
 
 **Your file is safe.** Here's how to fix it:
 
 1. Open Windows Security → Virus & threat protection
 2. Click "Manage settings" under Virus & threat protection settings
 3. Scroll to "Exclusions" → "Add or remove exclusions"
-4. Add the folder where you downloaded `omarchy.exe` as an exclusion
+4. Add the folder where you downloaded `Loom.exe` as an exclusion
 5. Run the file again
 
-[Verify the file checksum](https://github.com/Taha95-dev/Omarchy-CLI-tool/releases/download/v2.6.0/checksums.txt) to confirm integrity.
+[Verify the file checksum](https://github.com/Taha95-dev/Loom/releases/download/v2.6.0/checksums.txt) to confirm integrity.
 
 ---
 
-**Omarchy v1 remains free and open source (MIT)**
+**Loom v1 remains free and open source (MIT)**

@@ -3,8 +3,8 @@ package doctor
 import (
 	"context"
 	"fmt"
-	"omarchy/pkg/gitsupport"
-	"omarchy/pkg/support"
+	"loom/pkg/gitsupport"
+	"loom/pkg/support"
 	"os"
 	"sync"
 )

@@ -1,5 +1,5 @@
 package main
-// omarchy v1
+// Loom v1
 import (
 	"context"
 	"encoding/json"
@@ -7,22 +7,22 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"omarchy/pkg/backup"
-	"omarchy/pkg/cleanup"
-	"omarchy/pkg/config"
-	"omarchy/pkg/counter"
-	"omarchy/pkg/database"
-	"omarchy/pkg/deploy"
-	"omarchy/pkg/disk"
-	"omarchy/pkg/doctor"
-	"omarchy/pkg/find"
-	"omarchy/pkg/gitsupport"
-	"omarchy/pkg/info"
-	"omarchy/pkg/runscripts"
-	"omarchy/pkg/support"
-	"omarchy/pkg/templates"
-	"omarchy/pkg/tree"
-	"omarchy/pkg/promo"
+	"loom/pkg/backup"
+	"loom/pkg/cleanup"
+	"loom/pkg/config"
+	"loom/pkg/counter"
+	"loom/pkg/database"
+	"loom/pkg/deploy"
+	"loom/pkg/disk"
+	"loom/pkg/doctor"
+	"loom/pkg/find"
+	"loom/pkg/gitsupport"
+	"loom/pkg/info"
+	"loom/pkg/runscripts"
+	"loom/pkg/support"
+	"loom/pkg/templates"
+	"loom/pkg/tree"
+	"loom/pkg/promo"
 	"os"
 	"os/exec"
 	"os/signal"
@@ -75,7 +75,7 @@ func main() {
 			handleTreeCommand(ctx)
 			return
 
-		// Fast Quality-of-Life shortcut: 'omarchy dev' auto-runs current project ecosystem
+		// Fast Quality-of-Life shortcut: 'Loom dev' auto-runs current project ecosystem
 		case "dev":
 			projectType := runscripts.DetectProjectType()
 			if projectType != "unknown" {
@@ -116,7 +116,7 @@ func main() {
 
 		case "save":
 			if len(os.Args) < 3 {
-				fmt.Println("Usage: omarchy save <template-name>")
+				fmt.Println("Usage: Loom save <template-name>")
 				return
 			}
 			templateName := os.Args[2]
@@ -129,7 +129,7 @@ func main() {
 			return
 		case "delete-template", "rm-template":
 			if len(os.Args) < 3 {
-				fmt.Println("Usage: omarchy delete-template <template-name>")
+				fmt.Println("Usage: Loom delete-template <template-name>")
 				return
 			}
 			templateName := os.Args[2]
@@ -140,7 +140,7 @@ func main() {
 			return
 		case "from-template", "use":
     			if len(os.Args) < 4 {
-        			fmt.Println("Usage: omarchy from-template <template-name> <new-project-name>")
+        			fmt.Println("Usage: Loom from-template <template-name> <new-project-name>")
 	 			return
 			}
     		templateName := os.Args[2]
@@ -158,7 +158,7 @@ func main() {
 			handleTreeBuildCommand()
 			return
 		case "version", "--version":
-			fmt.Printf("Omarchy %s\n", Version) // Fixed formatting string layout
+			fmt.Printf("Loom %s\n", Version) // Fixed formatting string layout
 			return
 		case "fix-git-home":
 			gitsupport.HandleFixGitInHome()
@@ -171,7 +171,7 @@ func main() {
 			return
 		case "db":
 			if len(os.Args) < 3 {
-				fmt.Println("Usage: omarchy db <init|migrate|seed|reset|status>")
+				fmt.Println("Usage: Loom db <init|migrate|seed|reset|status>")
 				return
 			}
 			handleDBCommand()
@@ -193,7 +193,7 @@ func main() {
 			return
 		case "config":
 			if len(os.Args) < 3 {
-				fmt.Println("Usage: omarchy config <--edit|--path|--list>")
+				fmt.Println("Usage: Loom config <--edit|--path|--list>")
 				return
 			}
 			handleConfigCommand()
@@ -219,12 +219,12 @@ func main() {
 			return
 		default:
 			fmt.Printf("❌ Unknown command: %s\n", os.Args[1])
-			fmt.Println("Run 'omarchy help' for available commands")
+			fmt.Println("Run 'Loom help' for available commands")
 			return
 		}
 	}
 	if len(os.Args) > 1 && (os.Args[1] == "version" || os.Args[1] == "--version") {
-		fmt.Printf("Omarchy %s\n", Version)
+		fmt.Printf("Loom %s\n", Version)
 		return
 	}
 	promo.Show()
@@ -301,7 +301,7 @@ func validateConfig(configPath string) {
 	// Check if file exists
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
 		fmt.Printf("❌ Config file does not exist\n")
-		fmt.Printf("   Run 'omarchy config --edit' to create one\n")
+		fmt.Printf("   Run 'Loom config --edit' to create one\n")
 		return
 	}
 
@@ -352,7 +352,7 @@ func validateConfig(configPath string) {
 		fmt.Printf("ℹ️  type_backend not set (will use 'node')\n")
 	}
 
-	fmt.Printf("\n💡 Config is usable. Run 'omarchy doctor' for full environment check.\n")
+	fmt.Printf("\n💡 Config is usable. Run 'Loom doctor' for full environment check.\n")
 }
 
 func contains(slice []string, val string) bool {
@@ -366,9 +366,9 @@ func contains(slice []string, val string) bool {
 func handleConfigCommand() {
 	if len(os.Args) < 3 {
 		fmt.Println("❌ Missing subcommand")
-		fmt.Println("Usage: omarchy config --edit")
-		fmt.Println("       omarchy config --path")
-		fmt.Println("       omarchy config --list")
+		fmt.Println("Usage: Loom config --edit")
+		fmt.Println("       Loom config --path")
+		fmt.Println("       Loom config --list")
 		return
 	}
 
@@ -400,7 +400,7 @@ func handleConfigCommand() {
 			fmt.Printf("   You can manually edit: %s\n", configPath)
 			return
 		}
-		fmt.Printf("✅ Config saved. Run 'omarchy doctor' to validate.\n")
+		fmt.Printf("✅ Config saved. Run 'Loom doctor' to validate.\n")
 
 	case "--path", "-p":
 		fmt.Println(configPath)
@@ -600,7 +600,7 @@ func handleDiskUsageCommand() {
 }
 func handleDBCommand() {
 	if len(os.Args) < 3 {
-		fmt.Println("Usage: omarchy db <init|migrate|seed|reset|status> [--dry-run] [--force]")
+		fmt.Println("Usage: Loom db <init|migrate|seed|reset|status> [--dry-run] [--force]")
 		return
 	}
 
@@ -641,9 +641,9 @@ func handleDBCommand() {
 			fmt.Printf("You are about to run migrations on: %s\n", getDBURL(dbType))
 			fmt.Println("This could change your schema and potentially delete data.")
 			fmt.Println("\nFirst, run dry-run to see what will change:")
-			fmt.Println("  omarchy db migrate --dry-run")
+			fmt.Println("  Loom db migrate --dry-run")
 			fmt.Println("\nIf you're sure, run with --force:")
-			fmt.Println("  omarchy db migrate --force")
+			fmt.Println("  Loom db migrate --force")
 			return
 		}
 
@@ -704,7 +704,7 @@ func handleDBCommand() {
 		} else {
 			fmt.Println("✅ Database reset successfully.")
 			if !force {
-				fmt.Println("   Tip: Run 'omarchy db seed' to populate with test data.")
+				fmt.Println("   Tip: Run 'Loom db seed' to populate with test data.")
 			}
 		}
 
@@ -825,7 +825,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = FastAPI(title="Omarchy Python API")
+app = FastAPI(title="Loom Python API")
 
 app.add_middleware(
     CORSMiddleware,
@@ -837,7 +837,7 @@ app.add_middleware(
 
 @app.get("/")
 def root():
-    return {"message": "Omarchy Python API"}
+    return {"message": "Loom Python API"}
 
 @app.get("/health")
 def health():
@@ -885,7 +885,7 @@ func createCppBackend(path string) {
 
 	// CMakeLists.txt
 	cmake := `cmake_minimum_required(VERSION 3.20)
-project(OmarchyCppAPI)
+project(LoomCppAPI)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -899,11 +899,11 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(crow)
 
-add_executable(omarchy-api src/main.cpp)
-target_link_libraries(omarchy-api Crow::Crow)
+add_executable(Loom-api src/main.cpp)
+target_link_libraries(Loom-api Crow::Crow)
 
 # Install
-install(TARGETS omarchy-api DESTINATION bin)
+install(TARGETS Loom-api DESTINATION bin)
 `
 	os.WriteFile(filepath.Join(path, "CMakeLists.txt"), []byte(cmake), 0644)
 
@@ -915,7 +915,7 @@ int main() {
     crow::SimpleApp app;
 
     CROW_ROUTE(app, "/")([](){
-        return crow::response("Omarchy C++ API");
+        return crow::response("Loom C++ API");
     });
 
     CROW_ROUTE(app, "/health")([](){
@@ -943,7 +943,7 @@ COPY . .
 
 RUN mkdir build && cd build && cmake .. && make
 
-CMD ["./build/omarchy-api"]
+CMD ["./build/Loom-api"]
 `
 	os.WriteFile(filepath.Join(path, "Dockerfile"), []byte(dockerfile), 0644)
 
@@ -998,7 +998,7 @@ func createCLIStructure(path string) {
 import "fmt"
 
 func main() {
-    fmt.Println("Omarchy CLI Tool")
+    fmt.Println("Loom CLI Tool")
 }
 `
 	os.WriteFile(filepath.Join(path, "main.go"), []byte(mainContent), 0644)
@@ -1050,7 +1050,7 @@ func createVueFiles(path string) {
 
 	// package.json
 	packageJSON := `{
-  "name": "omarchy-vue-app",
+  "name": "Loom-vue-app",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
@@ -1070,7 +1070,7 @@ func createVueFiles(path string) {
 	// App.vue
 	appVue := `<template>
   <div>
-    <h1>Omarchy Vue App</h1>
+    <h1>Loom Vue App</h1>
     <button @click="count++">Count: {{ count }}</button>
   </div>
 </template>
@@ -1100,7 +1100,7 @@ createApp(App).mount('#app')`
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Omarchy Vue App</title>
+  <title>Loom Vue App</title>
 </head>
 <body>
   <div id="app"></div>
@@ -1120,7 +1120,7 @@ func createSvelteFiles(path string) {
 	}
 
 	packageJSON := `{
-  "name": "omarchy-svelte-app",
+  "name": "Loom-svelte-app",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
@@ -1142,7 +1142,7 @@ func createSvelteFiles(path string) {
 </script>
 
 <main>
-  <h1>Omarchy Svelte App</h1>
+  <h1>Loom Svelte App</h1>
   <button on:click={() => count++}>
     Count: {count}
   </button>
@@ -1169,7 +1169,7 @@ export default app`
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Omarchy Svelte App</title>
+  <title> Loom Svelte App</title>
 </head>
 <body>
   <div id="app"></div>
@@ -1190,7 +1190,7 @@ func createNextFiles(path string) {
 	}
 
 	packageJSON := `{
-  "name": "omarchy-next-app",
+  "name": "Loom-next-app",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
@@ -1214,10 +1214,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Omarchy Next App</title>
+        <title>Loom Next App</title>
       </Head>
       <main>
-        <h1>Omarchy Next.js App</h1>
+        <h1>Loom Next.js App</h1>
         <button onClick={() => setCount(count + 1)}>
           Count: {count}
         </button>
@@ -1253,9 +1253,9 @@ Thumbs.db
 	os.WriteFile(filepath.Join(path, ".gitignore"), []byte(gitignore), 0644)
 
 	// Create initial README
-	readme := `# Omarchy Project
+	readme := `# Loom Project
 
-Created with Omarchy CLI tool.
+Created with Loom CLI tool.
 `
 	os.WriteFile(filepath.Join(path, "README.md"), []byte(readme), 0644)
 }
@@ -1263,7 +1263,7 @@ Created with Omarchy CLI tool.
 func createReactFiles(path string) {
 	// package.json
 	packageJSON := `{
-  "name": "omarchy-frontend",
+  "name": "Loom-frontend",
   "version": "1.0.0",
   "scripts": {
     "start": "vite",
@@ -1288,7 +1288,7 @@ function App() {
   
   return (
     <div>
-      <h1>Omarchy React App</h1>
+      <h1>Loom React App</h1>
       <button onClick={() => setCount(count + 1)}>
         Count: {count}
       </button>
@@ -1324,7 +1324,7 @@ func main() {
 	os.WriteFile(filepath.Join(path, "main.go"), []byte(mainGo), 0644)
 
 	// go.mod
-	goMod := `module omarchy-backend
+	goMod := `module Loom-backend
 
 go 1.21
 `
@@ -1454,7 +1454,7 @@ func handleBranchCommand() {
 
 	if branchName == "" {
 		fmt.Println("❌ Missing branch name")
-		fmt.Println("Usage: omarchy branch -d <name>")
+		fmt.Println("Usage: Loom branch -d <name>")
 		return
 	}
 
@@ -1607,7 +1607,7 @@ func RunGoBuild(name string) error {
 				if strings.HasPrefix(firstLine, "module ") {
 					fullModulePath := strings.TrimSpace(strings.TrimPrefix(firstLine, "module "))
 
-					// Fix: Extract just the last part (e.g., "github.com/user/omarchy" -> "omarchy")
+					// Fix: Extract just the last part (e.g., "github.com/user/omarchy" -> "loom")
 					outputName = filepath.Base(fullModulePath)
 				}
 			}
@@ -1662,48 +1662,48 @@ func showHelp() {
                                             |___/ 
 `
 	fmt.Println(banner)
-	fmt.Printf(`🚀 Omarchy - Project Scaffolding CLI Tool
+	fmt.Printf(`🚀 Loom - Project Scaffolding CLI Tool
 
 USAGE:
-  omarchy [command] [options]
+  Loom [command] [options]
 
 COMMANDS:
   Project Creation:
-    omarchy -name <name> -type <type> [options]   Create new project
+    Loom -name <name> -type <type> [options]   Create new project
 
   Templates:
-    omarchy save <template-name>                  Save current project as template
-    omarchy list-templates                        List all saved templates
-    omarchy delete-template <name>                Delete a saved template
+    Loom save <template-name>                  Save current project as template
+    Loom list-templates                        List all saved templates
+    Loom delete-template <name>                Delete a saved template
 
 Database:
-   omarchy db init                     Initialize database
-   omarchy db migrate                  Run migrations
-   omarchy db migrate --dry-run        Preview migrations without running
-   omarchy db seed                     Seed database
-   omarchy db reset                    Reset database (DESTROYS DATA)
-   omarchy db reset --dry-run          Preview reset
-   omarchy db status                   Show migration status
+   Loom db init                     Initialize database
+   Loom db migrate                  Run migrations
+   Loom db migrate --dry-run        Preview migrations without running
+   Loom db seed                     Seed database
+   Loom db reset                    Reset database (DESTROYS DATA)
+   Loom db reset --dry-run          Preview reset
+   Loom db status                   Show migration status
    
 
 Git:
-  omarchy sync                      Commit with default message
-  omarchy sync -a                   Auto-generate commit message
-  omarchy sync -m "message"         Commit with custom message
-  omarchy sync --tag v2.3.0         Commit + tag + push
-  omarchy branch -d <name>          Delete merged branch safely
-  omarchy branch -D <name>          Force delete unmerged branch
+  Loom sync                      Commit with default message
+  Loom sync -a                   Auto-generate commit message
+  Loom sync -m "message"         Commit with custom message
+  Loom sync --tag v2.3.0         Commit + tag + push
+  Loom branch -d <name>          Delete merged branch safely
+  Loom branch -D <name>          Force delete unmerged branch
 
   Utilities:
-    omarchy doctor                               Check development environment
-    omarchy count [ext] [-r]                     Count files by extension
-    omarchy tree [--depth N]     Show directory tree (limit depth with --depth)
-    omarchy version                              Show version
-	omarchy tree-build [--preview] [--from file]    Create files/folders from tree structure
-	omarchy du [path] [--depth N]    Show disk usage (like du command)
-	omarchy backup [path] [--dest DIR] [--name NAME]    Create zip backup of project
-	omarchy cleanup [--dry-run] [--all]    Remove temporary files and old backups
-	omarchy find [path] --pattern TEXT    Search for files/directories
+    Loom doctor                               Check development environment
+    Loom count [ext] [-r]                     Count files by extension
+    Loom tree [--depth N]     Show directory tree (limit depth with --depth)
+    Loom version                              Show version
+	Loom tree-build [--preview] [--from file]    Create files/folders from tree structure
+	Loom du [path] [--depth N]    Show disk usage (like du command)
+	Loom backup [path] [--dest DIR] [--name NAME]    Create zip backup of project
+	Loom cleanup [--dry-run] [--all]    Remove temporary files and old backups
+	Loom find [path] --pattern TEXT    Search for files/directories
   --name NAME        Exact filename
   --ext EXT          File extension
   --type f|d         File or directory only
@@ -1714,12 +1714,12 @@ Git:
   -v                 Verbose output
 
 Templates:
-  omarchy save <template-name>                  Save current project as template
-  omarchy list-templates                        List all saved templates
-  omarchy delete-template <name>                Delete a saved template
-  omarchy use <template-name> <new-name>        Create new project from template
+  Loom save <template-name>                  Save current project as template
+  Loom list-templates                        List all saved templates
+  Loom delete-template <name>                Delete a saved template
+  Loom use <template-name> <new-name>        Create new project from template
   Help:
-    omarchy help, omarchy --help                 Show this help message
+    Loom help, Loom --help                 Show this help message
 
 PROJECT TYPES:
   web          Basic website with HTML/CSS/JS
@@ -1746,37 +1746,37 @@ OTHER OPTIONS:
 
 EXAMPLES:
   # Create a React + Node fullstack app
-  omarchy -name my-app -type fullstack -react -node -git
+  Loom -name my-app -type fullstack -react -node -git
 
   # Create a Vue + Go fullstack app
-  omarchy -name my-app -type fullstack -vue -go
+  Loom -name my-app -type fullstack -vue -go
 
   # Create a backend-only Node API
-  omarchy -name my-api -type backend -node
+  Loom -name my-api -type backend -node
 
   # Save current project as template
-  omarchy save my-starter
+  Loom save my-starter
 
   # Auto commit and push all changes
-  omarchy sync -a
+  Loom sync -a
 
   # Count all Go files recursively
-  omarchy count go -r
+  Loom count go -r
 
-  # Auto Update Omarchy CLI tool to latest version
-  omarchy update
+  # Auto Update Loom CLI tool to latest version
+  Loom update
 
 CONFIGURATION:
-  ~/.omarchy.yaml      Default settings (author, license, default_type, etc.)
+  ~/.Loom.yaml      Default settings (author, license, default_type, etc.)
 
 VERSION:
-  Omarchy %s
+  Loom %s
 
 FEEDBACK:
   Found a bug or have a suggestion? Open an issue on GitHub:
-  https://github.com/Taha95-dev/Omarchy-CLI-tool/issues/new
+  https://github.com/Taha95-dev/Loom/issues/new
 
-For more information: https://github.com/Taha95-dev/Omarchy-CLI-tool
+For more information: https://github.com/Taha95-dev/Loom
 `, Version)
 }
 func handleTreeBuildCommand() {
@@ -1840,7 +1840,7 @@ func handleUpdateCommand() {
 	fmt.Printf("🔍 Checking for updates...\n")
 
 	// Get latest version from GitHub API
-	url := "https://api.github.com/repos/Taha95-dev/Omarchy-CLI-tool/releases/latest"
+	url := "https://api.github.com/repos/Taha95-dev/Loom/releases/latest"
 	resp, err := http.Get(url)
 	if err != nil {
 		fmt.Printf("❌ Failed to check for updates: %v\n", err)
@@ -1872,18 +1872,18 @@ func handleUpdateCommand() {
 	var binaryName string
 	switch runtime.GOOS {
 	case "windows":
-		binaryName = "omarchy-windows-amd64.exe"
+		binaryName = "Loom-windows-amd64.exe"
 	case "linux":
-		binaryName = "omarchy-linux-amd64"
+		binaryName = "Loom-linux-amd64"
 	case "darwin":
-		binaryName = "omarchy-darwin-amd64"
+		binaryName = "Loom-darwin-amd64"
 	default:
 		fmt.Printf("❌ Unsupported OS: %s\n", runtime.GOOS)
 		return
 	}
 
 	// Download URL
-	downloadURL := fmt.Sprintf("https://github.com/Taha95-dev/Omarchy-CLI-tool/releases/download/%s/%s", latestVersion, binaryName)
+	downloadURL := fmt.Sprintf("https://github.com/Taha95-dev/Loom/releases/download/%s/%s", latestVersion, binaryName)
 
 	fmt.Printf("⬇️ Downloading update...\n")
 
@@ -1935,5 +1935,5 @@ func handleUpdateCommand() {
 	}
 
 	fmt.Printf("✅ Updated to version %s!\n", latestVersion)
-	fmt.Printf("   Run 'omarchy version' to confirm\n")
+	fmt.Printf("   Run 'Loom version' to confirm\n")
 }

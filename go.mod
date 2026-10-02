@@ -1,4 +1,4 @@
-module omarchy
+module loom
 
 go 1.26.3
 

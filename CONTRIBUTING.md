@@ -1,6 +1,6 @@
-# Contributing to Omarchy-CLI-Tool
+# Contributing to Loom
 
-First off, thank you for considering contributing to Omarchy! 🎉 It means a lot that you want to help make this tool better.
+First off, thank you for considering contributing to Loom! 🎉 It means a lot that you want to help make this tool better.
 
 ## Table of Contents
 - [Code of Conduct](#code-of-conduct)
@@ -58,9 +58,9 @@ Have an idea? Open an issue with:
 
 ### Clone and Build
 ```bash
-git clone https://github.com/Taha95-dev/Omarchy-CLI-tool.git
-cd Omarchy-CLI-tool
-go build -o omarchy
+git clone https://github.com/Taha95-dev/Loom.git
+cd Loom
+go build -o Loom
 Run Tests
 bash
 go test ./...
@@ -90,8 +90,8 @@ Example:
 text
 Add support for custom templates
 
-- Add `omarchy save` command
-- Add `omarchy use` command
+- Add `Loom save` command
+- Add `Loom use` command
 - Update README with examples
 - Fix #42
 Testing

@@ -18,18 +18,18 @@ jobs:
           - os: windows-latest
             goos: windows
             goarch: amd64
-            output: omarchy.exe
-            asset_name: omarchy-windows-amd64.exe
+            output: Loom.exe
+            asset_name: Loom-windows-amd64.exe
           - os: ubuntu-latest
             goos: linux
             goarch: amd64
-            output: omarchy
-            asset_name: omarchy-linux-amd64
+            output: Loom
+            asset_name: Loom-linux-amd64
           - os: macos-latest
             goos: darwin
             goarch: arm64
-            output: omarchy
-            asset_name: omarchy-darwin-arm64
+            output: Loom
+            asset_name: Loom-darwin-arm64
 
     steps:
       - name: Checkout code

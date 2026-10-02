@@ -2,7 +2,7 @@ package deploy
 
 import (
 	"fmt"
-	"omarchy/pkg/database"
+	"loom/pkg/database"
 	"os"
 	"os/exec"
 	"strings"

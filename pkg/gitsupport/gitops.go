@@ -3,7 +3,7 @@ package gitsupport
 import (
 	"context"
 	"fmt"
-	"omarchy/pkg/support"
+	"loom/pkg/support"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -348,7 +348,7 @@ func CheckVSCodeExtensions() {
 	}
 }
 func CheckOmarchyVersion() {
-	cmd := exec.Command("omarchy", "--version")
+	cmd := exec.Command("loom", "--version")
 	output, err := cmd.Output()
 	if err != nil {
 		support.PrintWarning("⚠️ Could not check Omarchy version")
